@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EcoPet</string>
+
+    <!-- Inicio -->
+    <string name="home_badge">Clínica veterinaria</string>
+    <string name="home_tagline">Cuidamos a quienes más quieres</string>
+    <string name="btn_book">Agendar cita</string>
+    <string name="btn_services">Nuestros servicios</string>
+    <string name="btn_exit">Salir</string>
+    <string name="logo_description">Logo de EcoPet: una huella de mascota con una hoja</string>
+
+    <!-- Formulario -->
+    <string name="form_title">Agendar cita</string>
+    <string name="form_subtitle">Complete los datos de la cita</string>
+    <string name="label_owner">Nombre del propietario</string>
+    <string name="label_phone">Número de teléfono</string>
+    <string name="label_date">Fecha de la cita</string>
+    <string name="label_time">Hora de la cita</string>
+    <string name="label_breed">Raza de la mascota</string>
+    <string name="label_size">Tamaño de la mascota</string>
+    <string name="size_small">Pequeño</string>
+    <string name="size_medium">Mediano</string>
+    <string name="size_large">Grande</string>
+    <string name="action_pick">Elegir</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_save">Guardar</string>
+    <string name="dialog_ok">Aceptar</string>
+    <string name="dialog_time_title">Seleccione la hora</string>
+
+    <!-- Errores de validación -->
+    <string name="err_owner">Ingrese el nombre del propietario</string>
+    <string name="err_phone">Ingrese un teléfono de 10 dígitos</string>
+    <string name="err_date">Seleccione la fecha de la cita</string>
+    <string name="err_time">Seleccione la hora de la cita</string>
+    <string name="err_breed">Ingrese la raza de la mascota</string>
+    <string name="err_size">Seleccione el tamaño de la mascota</string>
+
+    <!-- Resumen -->
+    <string name="summary_title">Resumen de la cita</string>
+    <string name="summary_ok">¡Cita registrada con éxito!</string>
+    <string name="summary_name">Nombre</string>
+    <string name="summary_phone">Teléfono</string>
+    <string name="summary_date">Fecha</string>
+    <string name="summary_time">Hora</string>
+    <string name="summary_breed">Raza</string>
+    <string name="summary_size">Tamaño</string>
+    <string name="btn_home">Volver al inicio</string>
+
+    <!-- Servicios -->
+    <string name="services_title">Nuestros servicios</string>
+    <string name="services_subtitle">Todo lo que su mascota necesita en un solo lugar</string>
+    <string name="service_consulta">Consulta veterinaria</string>
+    <string name="service_consulta_desc">Evaluación general y seguimiento de la salud de su mascota.</string>
+    <string name="service_vacunacion">Vacunación</string>
+    <string name="service_vacunacion_desc">Aplicación y control del calendario de vacunas.</string>
+    <string name="service_desparasitacion">Desparasitación</string>
+    <string name="service_desparasitacion_desc">Prevención y tratamiento de parásitos.</string>
+    <string name="service_bano">Baño y peluquería</string>
+    <string name="service_bano_desc">Higiene, baño y cuidado estético de su mascota.</string>
+    <string name="service_emergencias">Emergencias veterinarias</string>
+    <string name="service_emergencias_desc">Atención inmediata cuando su mascota más lo necesita.</string>
+    <string name="service_cirugia">Cirugía</string>
+    <string name="service_cirugia_desc">Procedimientos quirúrgicos con cuidado y seguimiento profesional.</string>
+    <string name="service_control">Control de mascotas</string>
+    <string name="service_control_desc">Chequeos periódicos y registro del historial de su mascota.</string>
+</resources>
