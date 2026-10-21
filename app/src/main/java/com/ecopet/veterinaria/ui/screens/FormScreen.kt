@@ -98,15 +98,19 @@ private fun formatTime(hour24: Int, minute: Int): String {
 @Composable
 fun FormScreen(
     onCancel: () -> Unit,
-    onSave: (Cita) -> Unit
+    onSave: (Cita) -> Unit,
+    /** Si no es null, el formulario está en modo EDITAR y arranca con los datos de esa cita. */
+    initial: Cita? = null
 ) {
+    val editing = initial != null
+
     // Estado del formulario (sobrevive a rotaciones de pantalla).
-    var owner by rememberSaveable { mutableStateOf("") }
-    var phone by rememberSaveable { mutableStateOf("") } // solo dígitos
-    var date by rememberSaveable { mutableStateOf("") }
-    var time by rememberSaveable { mutableStateOf("") }
-    var breed by rememberSaveable { mutableStateOf("") }
-    var size by rememberSaveable { mutableStateOf("") }
+    var owner by rememberSaveable { mutableStateOf(initial?.propietario ?: "") }
+    var phone by rememberSaveable { mutableStateOf(initial?.telefono ?: "") } // solo dígitos
+    var date by rememberSaveable { mutableStateOf(initial?.fecha ?: "") }
+    var time by rememberSaveable { mutableStateOf(initial?.hora ?: "") }
+    var breed by rememberSaveable { mutableStateOf(initial?.raza ?: "") }
+    var size by rememberSaveable { mutableStateOf(initial?.tamano ?: "") }
     var submitted by rememberSaveable { mutableStateOf(false) }
 
     var showDatePicker by remember { mutableStateOf(false) }
@@ -139,12 +143,12 @@ fun FormScreen(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text(
-                        text = stringResource(R.string.form_title),
+                        text = stringResource(if (editing) R.string.form_title_edit else R.string.form_title),
                         style = MaterialTheme.typography.headlineMedium,
                         color = EcoForest
                     )
                     Text(
-                        text = stringResource(R.string.form_subtitle),
+                        text = stringResource(if (editing) R.string.form_subtitle_edit else R.string.form_subtitle),
                         style = MaterialTheme.typography.bodyMedium,
                         color = EcoMuted
                     )
@@ -243,14 +247,24 @@ fun FormScreen(
                     modifier = Modifier.weight(1f)
                 )
                 EcoPrimaryButton(
-                    text = stringResource(R.string.btn_save),
+                    text = stringResource(if (editing) R.string.btn_update else R.string.btn_save),
                     onClick = {
                         submitted = true
                         val valid = owner.trim().length >= 3 && phone.length == 10 &&
-                            date.isNotEmpty() && time.isNotEmpty() &&
-                            breed.trim().isNotEmpty() && size.isNotEmpty()
+                                date.isNotEmpty() && time.isNotEmpty() &&
+                                breed.trim().isNotEmpty() && size.isNotEmpty()
                         if (valid) {
-                            onSave(Cita(owner.trim(), phone, date, time, breed.trim(), size))
+                            onSave(
+                                Cita(
+                                    propietario = owner.trim(),
+                                    telefono = phone,
+                                    fecha = date,
+                                    hora = time,
+                                    raza = breed.trim(),
+                                    tamano = size,
+                                    id = initial?.id ?: 0L // se conserva el id al editar
+                                )
+                            )
                         }
                     },
                     modifier = Modifier.weight(1f)

@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,6 +45,7 @@ import com.ecopet.veterinaria.ui.theme.EcoMuted
 @Composable
 fun HomeScreen(
     onBook: () -> Unit,
+    onAppointments: () -> Unit,
     onServices: () -> Unit,
     onExit: () -> Unit
 ) {
@@ -54,6 +57,7 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .systemBarsPadding()
+                .verticalScroll(rememberScrollState()) // con 4 botones, evita cortes en pantallas pequeñas
                 .padding(horizontal = 28.dp)
                 .padding(top = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -104,10 +108,13 @@ fun HomeScreen(
                 Reveal(visible, 380) {
                     EcoPrimaryButton(stringResource(R.string.btn_book), onBook, Modifier.fillMaxWidth())
                 }
-                Reveal(visible, 460) {
+                Reveal(visible, 440) {
+                    EcoPrimaryButton(stringResource(R.string.btn_my_appointments), onAppointments, Modifier.fillMaxWidth())
+                }
+                Reveal(visible, 500) {
                     EcoPrimaryButton(stringResource(R.string.btn_services), onServices, Modifier.fillMaxWidth())
                 }
-                Reveal(visible, 540) {
+                Reveal(visible, 560) {
                     EcoOutlinedButton(stringResource(R.string.btn_exit), onExit, Modifier.fillMaxWidth())
                 }
             }
