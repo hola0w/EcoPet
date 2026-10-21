@@ -26,8 +26,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.ecopet.veterinaria.R
+import com.ecopet.veterinaria.ui.theme.EcoError
 import com.ecopet.veterinaria.ui.theme.EcoForest
 import com.ecopet.veterinaria.ui.theme.EcoMint
+import com.ecopet.veterinaria.ui.theme.EcoMuted
+import com.ecopet.veterinaria.ui.theme.EcoOutline
 import com.ecopet.veterinaria.ui.theme.EcoPrimary
 import com.ecopet.veterinaria.ui.theme.EcoSky
 
@@ -81,9 +84,15 @@ fun EcoLogo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun EcoPrimaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun EcoPrimaryButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
+) {
     Button(
         onClick = onClick,
+        enabled = enabled,
         modifier = modifier.height(EcoButtonHeight),
         shape = EcoButtonShape,
         colors = ButtonDefaults.buttonColors(containerColor = EcoPrimary, contentColor = Color.White),
@@ -94,15 +103,26 @@ fun EcoPrimaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Mod
 }
 
 @Composable
-fun EcoOutlinedButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun EcoOutlinedButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    /** true = borde y texto en rojo suave (acciones destructivas como Eliminar). */
+    destructive: Boolean = false
+) {
+    val accent = if (destructive) EcoError else EcoPrimary
     OutlinedButton(
         onClick = onClick,
+        enabled = enabled,
         modifier = modifier.height(EcoButtonHeight),
         shape = EcoButtonShape,
-        border = BorderStroke(1.5.dp, EcoPrimary),
+        border = BorderStroke(1.5.dp, if (enabled) accent else EcoOutline),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.White.copy(alpha = 0.7f),
-            contentColor = EcoForest
+            contentColor = if (destructive) EcoError else EcoForest,
+            disabledContainerColor = Color.White.copy(alpha = 0.4f),
+            disabledContentColor = EcoMuted.copy(alpha = 0.6f)
         )
     ) {
         Text(text, style = MaterialTheme.typography.labelLarge)

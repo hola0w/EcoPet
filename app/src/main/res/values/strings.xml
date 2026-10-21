@@ -47,22 +47,25 @@
     <string name="summary_size">Tamaño</string>
     <string name="btn_home">Volver al inicio</string>
 
-    <!-- Mis citas (CRUD con SQLite) -->
-    <string name="btn_my_appointments">Mis citas</string>
-    <string name="btn_edit">Editar</string>
+    <!-- CRUD con SQLite (pantalla única: formulario + botones + lista) -->
     <string name="btn_delete">Eliminar</string>
-    <string name="btn_new">Nueva cita</string>
-    <string name="btn_home_short">Inicio</string>
     <string name="btn_update">Actualizar</string>
-    <string name="list_title">Mis citas</string>
+    <string name="btn_query">Consultar</string>
+    <string name="btn_clear">Limpiar formulario</string>
+    <string name="btn_back_home">← Inicio</string>
+    <string name="list_title">Citas registradas</string>
     <string name="list_count_one">1 cita registrada</string>
     <string name="list_count_many">%1$d citas registradas</string>
+    <string name="list_hint">Toque una cita para cargarla en el formulario y poder actualizarla o eliminarla.</string>
     <string name="list_empty_title">Aún no hay citas</string>
-    <string name="list_empty_desc">Toque “Nueva cita” para registrar la primera.</string>
+    <string name="list_empty_desc">Complete el formulario y toque “Guardar” para registrar la primera.</string>
+    <string name="card_selected">Seleccionada</string>
     <string name="form_title_edit">Editar cita</string>
-    <string name="form_subtitle_edit">Modifique los datos de la cita</string>
+    <string name="form_subtitle_edit">Modifique los datos y toque “Actualizar”</string>
     <string name="dialog_delete_title">¿Eliminar cita?</string>
     <string name="dialog_delete_msg">Se eliminará la cita de %1$s (%2$s, %3$s). Esta acción no se puede deshacer.</string>
+    <string name="toast_saved">Cita guardada</string>
+    <string name="toast_queried">Citas actualizadas desde la base de datos</string>
     <string name="toast_updated">Cita actualizada</string>
     <string name="toast_deleted">Cita eliminada</string>
 

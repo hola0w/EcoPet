@@ -45,7 +45,6 @@ import com.ecopet.veterinaria.ui.theme.EcoMuted
 @Composable
 fun HomeScreen(
     onBook: () -> Unit,
-    onAppointments: () -> Unit,
     onServices: () -> Unit,
     onExit: () -> Unit
 ) {
@@ -109,12 +108,9 @@ fun HomeScreen(
                     EcoPrimaryButton(stringResource(R.string.btn_book), onBook, Modifier.fillMaxWidth())
                 }
                 Reveal(visible, 440) {
-                    EcoPrimaryButton(stringResource(R.string.btn_my_appointments), onAppointments, Modifier.fillMaxWidth())
-                }
-                Reveal(visible, 500) {
                     EcoPrimaryButton(stringResource(R.string.btn_services), onServices, Modifier.fillMaxWidth())
                 }
-                Reveal(visible, 560) {
+                Reveal(visible, 500) {
                     EcoOutlinedButton(stringResource(R.string.btn_exit), onExit, Modifier.fillMaxWidth())
                 }
             }

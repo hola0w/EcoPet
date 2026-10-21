@@ -7,48 +7,47 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import com.ecopet.veterinaria.data.CitaDbHelper
 
-
+/**
+ * Puente entre la pantalla y SQLite.
+ * Cada operación del CRUD escribe en la base y luego vuelve a leerla, así la lista
+ * que se muestra debajo del formulario siempre refleja lo que hay guardado.
+ */
 class AppointmentViewModel(application: Application) : AndroidViewModel(application) {
 
     private val db = CitaDbHelper(application)
 
+    /** Citas guardadas en SQLite (la más reciente primero). */
     var citas by mutableStateOf<List<Cita>>(emptyList())
-        private set
-
-    var cita by mutableStateOf<Cita?>(null)
         private set
 
     init {
         cargar()
     }
 
+    /** CONSULTAR: vuelve a leer todas las citas desde la base de datos. */
     fun cargar() {
         citas = db.obtenerTodas()
     }
 
-    fun buscar(id: Long): Cita? = citas.firstOrNull { it.id == id }
-
-    fun guardar(nueva: Cita) {
+    /** GUARDAR: inserta una cita nueva. Devuelve true si se guardó. */
+    fun guardar(nueva: Cita): Boolean {
         val id = db.insertar(nueva)
-        if (id != -1L) cita = nueva.copy(id = id)
         cargar()
+        return id != -1L
     }
 
+    /** ACTUALIZAR: modifica la cita que tiene ese mismo id. Devuelve true si cambió una fila. */
     fun actualizar(editada: Cita): Boolean {
         val filas = db.actualizar(editada)
         cargar()
         return filas > 0
     }
 
+    /** ELIMINAR: borra la cita con ese id. Devuelve true si se borró una fila. */
     fun eliminar(id: Long): Boolean {
         val filas = db.eliminar(id)
-        if (cita?.id == id) cita = null
         cargar()
         return filas > 0
-    }
-
-    fun limpiar() {
-        cita = null
     }
 
     override fun onCleared() {
